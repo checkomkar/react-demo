@@ -19,12 +19,22 @@ const Header = () => {
                 
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav">
-                        <li className="active">
+                        <li>
+                            <Link to="/products">Products</Link>
+                        </li>
+                        <li>
                             <Link to="/about">About</Link>
-                            <Link to="/contact">Contact</Link>
+                        </li>
+                        <li>
                             <Link to="/gallery">Gallery</Link>
                         </li>
-                        <li><a href="#">Link</a></li>
+                        <li>
+                            <Link to="/contact">Contact</Link>
+                        </li>
+                        
+                        <li>
+                            <Link to="/todo">Todo</Link>
+                        </li>
                         
                     </ul>                    
                     <ul className="nav navbar-nav navbar-right">

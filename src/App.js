@@ -13,7 +13,8 @@ import Header from './components/layouts/Header';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Login from './components/login/Login';
 import NotFound from './components/not-found/NotFound';
-
+import ProductDetails from './components/product/ProductDetails';
+import Product from './components/product/Product';
 class App extends Component {
 
     constructor(){
@@ -111,17 +112,22 @@ class App extends Component {
                         <AddName addName={(name)=>this.addName(name)}/>
                         <Gallery names={this.state.names}/> */}
                         <Switch>
+                            <Route path="/products/:id" component={ProductDetails}/>
+                            <Route path="/products" component={Product}/>
                             <Route path="/contact" component={Contact}/>
-                            <Route path="/about" component={About}/>
-                            <Route path="/gallery" component={Gallery}/>
+                            <Route path="/about"  component={()=><About 
+                            fName={this.firstName} 
+                            lName={this.lastName} emp={this.emp}/>}/>
+                            <Route path="/gallery" component={()=><Gallery names={this.state.names}/>}/>
                             <Route path="/not-found" component={NotFound}/>
                             <Route path="/login" component={Login}/>
-                            <Route path="/todo" component={Todo}/>
+                            <Route path="/todo" component={()=><Todo tasks={this.state.todo} addTodo={(task)=>this.addTodo(task)} 
+                        deleteTodo={(index)=>this.deleteTodo(index)}/>}/>
                             <Route path="/" component={Home}/>
                             <Redirect to="/not-found"/>
                         </Switch>
-                        <Todo tasks={this.state.todo} addTodo={(task)=>this.addTodo(task)} 
-                        deleteTodo={(index)=>this.deleteTodo(index)}/>
+                        {/* <Todo tasks={this.state.todo} addTodo={(task)=>this.addTodo(task)} 
+                        deleteTodo={(index)=>this.deleteTodo(index)}/> */}
                     </div>
                 </div>
                 
