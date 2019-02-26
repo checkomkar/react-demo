@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react'
-import { FormErrors } from '../layouts/FormError';
+import { FormErrors } from './FormError';
 
-class Login extends Component {
+class SignUp extends Component {
     state = { 
         email:'',
         password:'',
@@ -10,52 +10,48 @@ class Login extends Component {
         emailValid:false,
         passwordValid:false,
         formValid:false
-    }
-    handleUserInput (e) {
+     }
+     handleUserInput (e) {
         const name = e.target.name;
         const value = e.target.value;
         this.setState({[name]: value}, 
             () => { this.validateField(name, value) });
         console.log(this.state);
-    }
-    validateField(fieldName, value) {
+      }
+      validateField(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors;
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
-    
+      
         switch(fieldName) {
-        case 'email':
+          case 'email':
             emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
             fieldValidationErrors.email = emailValid ? '' : ' is invalid';
             break;
-        case 'password':
+          case 'password':
             passwordValid = value.length >= 6;
             fieldValidationErrors.password = passwordValid ? '': ' is too short';
             break;
-        default:
+          default:
             break;
         }
         this.setState({formErrors: fieldValidationErrors,
                         emailValid: emailValid,
                         passwordValid: passwordValid
-                    }, this.validateForm);
-    }
-    
-    validateForm() {
+                      }, this.validateForm);
+      }
+      
+      validateForm() {
         this.setState({formValid: this.state.emailValid && this.state.passwordValid});
-    }
-    handleSubmit = (e)=>{
-        e.preventDefault()
-        console.log("submitted", this.state)
-    }
+      }
     render() { 
         return (
             <div  className="col-md-6 col-md-offset-3 ">
                 {/* <div className="panel panel-default alert alert-danger"> */}
-            {/* <FormErrors formErrors={this.state.formErrors} /> */}
+            <FormErrors formErrors={this.state.formErrors} />
             {/* </div> */}
         
-            <form  className="well ">
+            <form className="well ">
              <h2 className="page-header">Sign Up</h2>
              <div className="form-group">
               <label>Email</label>
@@ -72,11 +68,11 @@ class Login extends Component {
              </div>            
 
             <button type="submit" className="btn btn-primary" 
-                    >Sign up</button>
+                    disabled={!this.state.formValid}>Sign up</button>
             </form>
             </div>
           );
     }
 }
  
-export default Login;
+export default SignUp;
