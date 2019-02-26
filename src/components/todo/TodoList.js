@@ -9,11 +9,13 @@ class TodoList extends Component {
                 <table className="table">
                     <TodoThead />
                     <tbody>
-                        {this.props.todoList.map((item, index) =>                       
+                        {
+                            this.props.todoList.map((item, index) =>                       
                         
                         <TodoRowItems key={index} index={index} item={item} 
                         deleteTodo={this.props.deleteTodo}/>
-                        )}                        
+                        )
+                        }                        
                         
                     </tbody>
                     
